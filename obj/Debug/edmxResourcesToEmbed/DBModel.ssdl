@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UEFA_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="MatchInfo">
+    <Key>
+      <PropertyRef Name="Match_ID" />
+    </Key>
+    <Property Name="Match_ID" Type="int" Nullable="false" />
+    <Property Name="Country" Type="nchar" MaxLength="30" />
+    <Property Name="City" Type="nchar" MaxLength="30" />
+    <Property Name="Stadium" Type="nchar" MaxLength="30" />
+    <Property Name="Nation_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="MatchStats">
+    <Key>
+      <PropertyRef Name="Match_ID" />
+    </Key>
+    <Property Name="Match_ID" Type="int" Nullable="false" />
+    <Property Name="Home_Team_ID" Type="int" Nullable="false" />
+    <Property Name="Away_Team_ID" Type="int" Nullable="false" />
+    <Property Name="GoalsHomeTeam" Type="int" Nullable="false" />
+    <Property Name="GoalsAwayTeam" Type="int" Nullable="false" />
+    <Property Name="RedCardsHomeTeam" Type="int" Nullable="false" />
+    <Property Name="YellowCardsHomeTeam" Type="int" Nullable="false" />
+    <Property Name="RedCardsAwayTeam" Type="int" Nullable="false" />
+    <Property Name="YellowCardsAwayTeam" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Nation">
+    <Key>
+      <PropertyRef Name="Nation_ID" />
+    </Key>
+    <Property Name="Nation_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Country" Type="nchar" MaxLength="20" />
+    <Property Name="Flag" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="Player_ID" />
+    </Key>
+    <Property Name="Player_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerName" Type="nchar" MaxLength="10" />
+    <Property Name="Team" Type="nchar" MaxLength="30" />
+    <Property Name="Position" Type="nchar" MaxLength="20" />
+    <Property Name="Nation_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_MatchInfo_Nation">
+    <End Role="Nation" Type="Self.Nation" Multiplicity="0..1" />
+    <End Role="MatchInfo" Type="Self.MatchInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nation">
+        <PropertyRef Name="Nation_ID" />
+      </Principal>
+      <Dependent Role="MatchInfo">
+        <PropertyRef Name="Nation_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MatchStats_Nation">
+    <End Role="Nation" Type="Self.Nation" Multiplicity="1" />
+    <End Role="MatchStats" Type="Self.MatchStats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nation">
+        <PropertyRef Name="Nation_ID" />
+      </Principal>
+      <Dependent Role="MatchStats">
+        <PropertyRef Name="Home_Team_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MatchStats_Nation1">
+    <End Role="Nation" Type="Self.Nation" Multiplicity="1" />
+    <End Role="MatchStats" Type="Self.MatchStats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nation">
+        <PropertyRef Name="Nation_ID" />
+      </Principal>
+      <Dependent Role="MatchStats">
+        <PropertyRef Name="Away_Team_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Players_Nation">
+    <End Role="Nation" Type="Self.Nation" Multiplicity="1" />
+    <End Role="Players" Type="Self.Players" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nation">
+        <PropertyRef Name="Nation_ID" />
+      </Principal>
+      <Dependent Role="Players">
+        <PropertyRef Name="Nation_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UEFA_DBModelStoreContainer">
+    <EntitySet Name="MatchInfo" EntityType="Self.MatchInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MatchStats" EntityType="Self.MatchStats" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nation" EntityType="Self.Nation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MatchInfo_Nation" Association="Self.FK_MatchInfo_Nation">
+      <End Role="Nation" EntitySet="Nation" />
+      <End Role="MatchInfo" EntitySet="MatchInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MatchStats_Nation" Association="Self.FK_MatchStats_Nation">
+      <End Role="Nation" EntitySet="Nation" />
+      <End Role="MatchStats" EntitySet="MatchStats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MatchStats_Nation1" Association="Self.FK_MatchStats_Nation1">
+      <End Role="Nation" EntitySet="Nation" />
+      <End Role="MatchStats" EntitySet="MatchStats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Players_Nation" Association="Self.FK_Players_Nation">
+      <End Role="Nation" EntitySet="Nation" />
+      <End Role="Players" EntitySet="Players" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

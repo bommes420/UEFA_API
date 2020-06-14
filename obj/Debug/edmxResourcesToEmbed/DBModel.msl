@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UEFA_DBModelStoreContainer" CdmEntityContainer="UEFA_DBEntities">
+    <EntitySetMapping Name="MatchInfo">
+      <EntityTypeMapping TypeName="UEFA_DBModel.MatchInfo">
+        <MappingFragment StoreEntitySet="MatchInfo">
+          <ScalarProperty Name="Match_ID" ColumnName="Match_ID" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Stadium" ColumnName="Stadium" />
+          <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MatchStats">
+      <EntityTypeMapping TypeName="UEFA_DBModel.MatchStats">
+        <MappingFragment StoreEntitySet="MatchStats">
+          <ScalarProperty Name="Match_ID" ColumnName="Match_ID" />
+          <ScalarProperty Name="Home_Team_ID" ColumnName="Home_Team_ID" />
+          <ScalarProperty Name="Away_Team_ID" ColumnName="Away_Team_ID" />
+          <ScalarProperty Name="GoalsHomeTeam" ColumnName="GoalsHomeTeam" />
+          <ScalarProperty Name="GoalsAwayTeam" ColumnName="GoalsAwayTeam" />
+          <ScalarProperty Name="RedCardsHomeTeam" ColumnName="RedCardsHomeTeam" />
+          <ScalarProperty Name="YellowCardsHomeTeam" ColumnName="YellowCardsHomeTeam" />
+          <ScalarProperty Name="RedCardsAwayTeam" ColumnName="RedCardsAwayTeam" />
+          <ScalarProperty Name="YellowCardsAwayTeam" ColumnName="YellowCardsAwayTeam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nation">
+      <EntityTypeMapping TypeName="UEFA_DBModel.Nation">
+        <MappingFragment StoreEntitySet="Nation">
+          <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="UEFA_DBModel.Players">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="Player_ID" ColumnName="Player_ID" />
+          <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Nation_ID" ColumnName="Nation_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
